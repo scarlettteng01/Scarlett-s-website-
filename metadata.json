@@ -1,0 +1,7 @@
+{
+  "name": "Scarlett Teng - ADHD & ASD Specialist Auckland",
+  "description": "Professional website for Scarlett Teng, a Mental Health Nurse Practitioner in Auckland specializing in ADHD and ASD diagnosis. Features an AI-powered pre-screening tool for neurodiversity assessments.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
