@@ -25,5 +25,29 @@
             Disclaimer: This assistant provides general information only. If you are in crisis, please call 111 or text 1737 (NZ).
         </p>
     </div>
+
+    <script type="module">
+    import { GoogleGenAI } from "https://esm.run/@google/genai";
+    const genAI = new GoogleGenAI("PASTE_YOUR_KEY_HERE");
+
+    window.askAI = async function() {
+        const input = document.getElementById("userInput").value;
+        const chatBox = document.getElementById("chat-box");
+        if (!input) return;
+
+        chatBox.innerHTML += `<div class='mt-2 text-indigo-900'><strong>You:</strong> ${input}</div>`;
+        document.getElementById("userInput").value = "";
+        
+        try {
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const result = await model.generateContent(input);
+            const response = await result.response;
+            chatBox.innerHTML += `<div class='mt-2'><strong>Assistant:</strong> ${response.text()}</div>`;
+        } catch (e) {
+            chatBox.innerHTML += `<div class='mt-2 text-red-500'>Error: Make sure your API Key is correct!</div>`;
+        }
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
 </body>
 </html>
